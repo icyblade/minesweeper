@@ -1,6 +1,9 @@
 /*
-  =========== mine.js ===========
-  ========== 扫雷程序代码 =========
+  ===============================
+  ==          mine.js          ==
+  ==  Minesweeper by Icyblade  ==
+  ==     DFS +  Flood Fill     ==
+  ===============================
 */
 
 /* 数组及其定义 */
@@ -14,7 +17,6 @@ var flaggedMine = 4;
 /* 8个方向 */
 var deltaX = [ -1, -1, -1,  0,  0,  1,  1,  1 ];
 var deltaY = [ -1,  0,  1, -1,  1, -1,  0,  1 ];
-//var deltaIndex = [];
 
 /* 图片 */
 var path = './resources/';
@@ -47,7 +49,7 @@ function getIndex(x, y) {                  // 获取 board 数组中对应的标
     return x * column + y;
 }
 
-function init(index) {                     // 初始化
+function init(index) {                     // 初始化，index 带入 init 防止第一次就踩到雷
     flaggedNum = 0;
     status.text = "剩余雷数: "+(mineNum - flaggedNum);
     //for (var d = 0; d < 8; d++)
