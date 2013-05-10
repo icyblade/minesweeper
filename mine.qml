@@ -70,20 +70,6 @@ Rectangle {
             onTriggered: Script.clearHint();
         }
 
-        Repeater {
-            id: timerRepeater
-            model: 8;
-
-            Timer {
-                property int index;
-
-                id: timeout
-                interval: 200;
-                running: false;
-                repeat: false;
-                onTriggered:;
-            }
-        }
     }
 
     Text {
