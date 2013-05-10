@@ -6,7 +6,7 @@
 */
 
 import QtQuick 1.1
-import "mine.js" as Script
+import "enim.js" as Script
 
 Rectangle {
     width: Script.column * Script.size;
@@ -75,13 +75,14 @@ Rectangle {
             model: 8;
 
             property int index;
-
+            Item {
             Timer {
                 id: timeOut;
                 interval: 200;
                 running: false;
                 repeat: false;
                 onTriggered:;
+            }
             }
         }
     }
