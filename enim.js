@@ -30,7 +30,7 @@ var hintPic = path+'viewed.png';
 var column = 30;
 var row = 16;
 var size = 30;
-var mineNum = 10;
+var mineNum = 99;
 var statusBarHeight = 20;
 
 var started = false;                       // 记录是否已经开始游戏
@@ -124,10 +124,8 @@ function clicked(index) {                  // 点击事件
         repeater.itemAt(getIndex(x, y)).value = path+cnt+".png";
     } else {
         repeater.itemAt(getIndex(x, y)).value = viewedPic;
-        for (var d = 0; d < 8; d++) {
-            //clicked(getIndex(x + deltaX[d], y + deltaY[d]));        // 递归点出一片
-            timerRepeater.itemAt(d).start();
-        }
+        for (var d = 0; d < 8; d++)
+            clicked(getIndex(x + deltaX[d], y + deltaY[d]));        // 递归点出一片
     }
 }
 
