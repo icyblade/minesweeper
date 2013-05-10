@@ -110,8 +110,10 @@ function clicked(index) {                  // 点击事件
     board[x][y] = viewed;
     rest--;
 
-    if (rest == 0)
+    if (rest == 0) {
         console.log("Win!");
+        repeater.acceptMouse = false;
+    }
 
     var cnt = 0;                            // 记录当前 block 点出来的数字
     for (var d = 0; d < 8; d++) {
