@@ -125,7 +125,8 @@ function clicked(index) {                  // 点击事件
     } else {
         repeater.itemAt(getIndex(x, y)).value = viewedPic;
         for (var d = 0; d < 8; d++)
-            clicked(getIndex(x + deltaX[d], y + deltaY[d]));        // 递归点出一片
+            //clicked(getIndex(x + deltaX[d], y + deltaY[d]));        // 递归点出一片
+
     }
 }
 

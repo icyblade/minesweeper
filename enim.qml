@@ -69,6 +69,21 @@ Rectangle {
             repeat: false;
             onTriggered: Script.clearHint();
         }
+
+        Repeater {
+            id: timerRepeater
+            model: 8;
+
+            property int index;
+
+            Timer {
+                id: timeOut;
+                interval: 200;
+                running: false;
+                repeat: false;
+                onTriggered:;
+            }
+        }
     }
 
     Text {
