@@ -25,6 +25,7 @@ var minePic = path+'mine.png';
 var viewedPic = path+'viewed.png';
 var flagPic = path+'flaged.png';
 var hintPic = path+'viewed.png';
+var curPic = path+'current.png';
 
 /* 棋盘规模及雷数 */
 var column = 30;
@@ -47,6 +48,31 @@ function getIndex(x, y) {                  // 获取 board 数组中对应的标
     if (x < 0 || x >= row || y < 0 || y >= column)
         return -1;
     return x * column + y;
+}
+
+var clickedSeq = [];
+var curDisplayed = 0;
+
+function displayNext() {
+    curDisplayed++;
+    if (curDisplayed >= clickedSeq.length) return;
+    clicked(clickedSeq[curDisplayed]);
+    repeater.itemAt(clickedSeq[curDisplayed]).value = curPic;
+    timerClrCur.start();
+}
+
+function clearCur() {
+    var x = Math.floor(clickedSeq[curDisplayed] / column);
+    var y = clickedSeq[curDisplayed] % column;
+    if (board[x][y] == mine) {
+        repeater.itemAt(clickedSeq[curDisplayed]).value = minePic;
+    } else if (board[x][y] == empty){
+        repeater.itemAt(clickedSeq[curDisplayed]).value = emptyPic;
+    } else if (board[x][y] == flagged || board[x][y] == flaggedMine) {
+        repeater.itemAt(clickedSeq[curDisplayed]).value = flagPic;
+    } else {
+        repeater.itemAt(clickedSeq[curDisplayed]).value = viewedPic;
+    }
 }
 
 function init(index) {                     // 初始化，index 带入 init 防止第一次就-踩到雷-
@@ -110,8 +136,10 @@ function clicked(index) {                  // 点击事件
     board[x][y] = viewed;
     rest--;
 
-    if (rest == 0)
+    if (rest == 0) {
         console.log("Win!");
+        repeater.acceptMouse = false;
+    }
 
     var cnt = 0;                            // 记录当前 block 点出来的数字
     for (var d = 0; d < 8; d++) {
@@ -124,9 +152,9 @@ function clicked(index) {                  // 点击事件
         repeater.itemAt(getIndex(x, y)).value = path+cnt+".png";
     } else {
         repeater.itemAt(getIndex(x, y)).value = viewedPic;
-        for (var d = 0; d < 8; d++);
-            //clicked(getIndex(x + deltaX[d], y + deltaY[d]));        // 递归点出一片
-
+        for (var d = 0; d < 8; d++) {
+            clickedSeq.push(getIndex(x + deltaX[d], y + deltaY[d]));
+        }
     }
 }
 

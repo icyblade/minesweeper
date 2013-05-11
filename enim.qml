@@ -70,20 +70,19 @@ Rectangle {
             onTriggered: Script.clearHint();
         }
 
-        Repeater {
-            id: timerRepeater
-            model: 8;
+        Timer {
+            interval: 200;
+            running: true;
+            repeat: true;
+            onTriggered: Script.displayNext();
+        }
 
-            property int index;
-            Item {
-            Timer {
-                id: timeOut;
-                interval: 200;
-                running: false;
-                repeat: false;
-                onTriggered:;
-            }
-            }
+        Timer {
+            id :timerClrCur
+            interval: 100;
+            running: false;
+            repeat: false;
+            onTriggered: Script.clearCur();
         }
     }
 
