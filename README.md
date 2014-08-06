@@ -1,4 +1,4 @@
 Minesweeper
 ==================
-Minesweeper by Icyblade and his friends
+Minesweeper by Cruise and Icyblade
 
